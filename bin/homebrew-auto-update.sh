@@ -13,6 +13,7 @@ PATH=/usr/local/bin:$PATH
 auto_update=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled)
 auto_fetch=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload)
 auto_upgrade=$(defaults read /Library/Preferences/com.apple.commerce AutoUpdate)
+auto_cleanup=$(defaults read /Library/Preferences/com.apple.commerce AutoCleanup)
 
 # auto_update を読み込めなかった場合
 if [ "$auto_update" != 1 ]; then
@@ -67,6 +68,19 @@ if [ "$auto_upgrade" == 1 ]; then
       -activate "$termapp_id" \
       >/dev/null
     exit 1  # 正常終了
+
+	# cleanup
+	elif [[ "$auto_cleanup" == 1 ]]; then
+		if ! out=$(brew cleanup 2>&1); then
+			-group 'org.eisentraut.BrewAutoUpdate' \
+	    -sound 'Glass' \
+	    -title 'Homebrew' \
+	    -subtitle 'It failed to cleanup.' \
+	    -message "$out" \
+	    -activate "$termapp_id" \
+	    >/dev/null
+	  	exit 1  # 正常終了
+		fi
   fi
 fi
 
