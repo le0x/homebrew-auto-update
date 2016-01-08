@@ -36,11 +36,15 @@ LaunchAgentsにシンボリックリンクの作成
 
     sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutoUpdate -boolean true
 
-4.状態を確認する
+4.自動クリーンアップの有効
+
+    sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutoCleanup  -boolean true
+
+5.状態を確認する
 
     launchctl list | grep auto-update
 
-5.正しく動作するかどうかいますぐ実行する
+6.正しく動作するかどうかいますぐ実行する
 
     launchctl start homebrew.mxcl.homebrew-auto-update
 
@@ -65,6 +69,9 @@ LaunchAgentsにシンボリックリンクの作成
 
     It failed to upgrade.
 
+`brew cleanup`が失敗した場合
+
+    It failed to cleanup.
 
 ### アンインストール手順
 作成したファイルの削除。brew uninstall で削除されるものもあるかもしれないけど、念の為に記述しておく。
@@ -90,3 +97,4 @@ LaunchAgentsにシンボリックリンクの作成
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutoUpdate
+    sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutoCleanup
