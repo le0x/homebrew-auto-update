@@ -101,5 +101,5 @@ LaunchAgentsにシンボリックリンクの作成
 
 ログファイルの削除
 
-  rm rf /private/tmp/homebrew-auto-update.out
-  rm rf /private/tmp/homebrew-auto-update.err
+    rm rf /private/tmp/homebrew-auto-update.out
+    rm rf /private/tmp/homebrew-auto-update.err
