@@ -98,3 +98,8 @@ LaunchAgentsにシンボリックリンクの作成
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutoUpdate
     sudo defaults delete /Library/Preferences/com.apple.SoftwareUpdate AutoCleanup
+
+ログファイルの削除
+
+  rm rf /private/tmp/homebrew-auto-update.out
+  rm rf /private/tmp/homebrew-auto-update.err
