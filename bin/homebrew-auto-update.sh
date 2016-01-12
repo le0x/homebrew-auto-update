@@ -12,7 +12,7 @@ PATH=/usr/local/bin:$PATH
 # OS X: check -> download -> update
 auto_update=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled)
 auto_fetch=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload)
-auto_upgrade=$(defaults read /Library/Preferences/com.apple.commerce AutoUpdate)
+auto_upgrade=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutoUpdate)
 auto_cleanup=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutoCleanup)
 
 # auto_update を読み込めなかった場合
@@ -57,7 +57,7 @@ fi
 outdated=$(brew outdated | tr '\n' ' ' | sed 's/ $//')
 
 # upgrade
-if [ "$auto_upgrade" == 1 ]; then
+if [ "$auto_upgrade" == 1 ] && [ -n "$outdated" ] ; then
   if ! out=$(brew upgrade 2>&1); then
     terminal-notifier \
       -group 'org.eisentraut.BrewAutoUpdate' \
