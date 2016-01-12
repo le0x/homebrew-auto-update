@@ -13,7 +13,7 @@ PATH=/usr/local/bin:$PATH
 auto_update=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled)
 auto_fetch=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload)
 auto_upgrade=$(defaults read /Library/Preferences/com.apple.commerce AutoUpdate)
-auto_cleanup=$(defaults read /Library/Preferences/com.apple.commerce AutoCleanup)
+auto_cleanup=$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutoCleanup)
 
 # auto_update を読み込めなかった場合
 if [ "$auto_update" != 1 ]; then
